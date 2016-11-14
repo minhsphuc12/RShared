@@ -1,0 +1,16 @@
+R Markdown file for Reproducible Research Peer Review Assignment
+========================================================
+
+
+
+```{r, echo=TRUE}
+data=read.csv('activity.csv',header=TRUE)
+
+```
+
+
+
+```{r fig.width=7, fig.height=6}
+plot(cars)
+```
+

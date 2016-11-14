@@ -1,0 +1,21 @@
+library(ggplot2)
+library(lattice)
+
+#read data
+nei <- readRDS("summarySCC_PM25.rds")
+scc <- readRDS("Source_Classification_Code.rds")
+
+
+#6
+#Compare emissions from motor vehicle sources in 
+#Baltimore City with emissions 
+#from motor vehicle sources in Los Angeles County
+nei5=subset(nei,fips %in% c('06037','24510'))
+year5=list(factor(nei5$year))
+emis6=aggregate(Emissions ~ fips+year,data=nei5,FUN=sum)
+
+png('plot6.png')
+qplot(year,Emissions,data=emis6,facets=  .~fips)
+dev.off()
+Print('Los Angeles has much higher emission to Baltimore')
+Print('Los Angeles has varying and more substantial changes than Baltimore')

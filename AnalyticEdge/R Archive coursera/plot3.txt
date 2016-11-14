@@ -1,0 +1,21 @@
+library(ggplot2)
+library(lattice)
+
+#read data
+nei <- readRDS("summarySCC_PM25.rds")
+scc <- readRDS("Source_Classification_Code.rds")
+
+#3
+#Of the four types of sources indicated by the 
+#type (point, nonpoint, onroad, nonroad) variable, for Baltimore City 
+#which have seen decreases in emissions from 1999-2008? 
+#Which have seen increases in emissions from 1999-2008?
+nei2=subset(nei,fips == "24510")
+emis3=aggregate(Emissions ~ type + year,data=nei2,FUN=sum)
+
+#construct plot and save png
+png('plot3.png')
+qplot(year,Emissions,data=emis3,facets=  .~type)
+dev.off()
+#answer
+Print('NONPOINT, NON-ROAD, ON-ROAD have decreasing emission each year, but type POINT is not')

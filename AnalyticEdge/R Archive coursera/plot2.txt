@@ -1,0 +1,21 @@
+library(ggplot2)
+library(lattice)
+
+#read data
+nei <- readRDS("summarySCC_PM25.rds")
+scc <- readRDS("Source_Classification_Code.rds")
+
+#2
+#Have total emissions from PM2.5 decreased in the Baltimore 
+#City, Maryland (fips == "24510") from 1999 to 2008?
+nei2=subset(nei,fips == "24510")
+year2=list(factor(nei2$year))
+emis2=aggregate(x=nei2$Emissions,by=year2,FUN=sum)
+colnames(emis2)=c('year','emission')
+#construct plot and save png
+png('plot2.png')
+barplot(emis2$emission,names.arg=emis2$year,
+        main='Emission Summary in Baltimore City')
+dev.off()
+#answer
+print('The emission total amount in Baltimore City from 1999 to 2008 was decreasing, but not continuous every year')

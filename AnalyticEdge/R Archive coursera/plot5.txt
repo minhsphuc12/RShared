@@ -1,0 +1,19 @@
+library(ggplot2)
+library(lattice)
+
+#read data
+nei <- readRDS("summarySCC_PM25.rds")
+scc <- readRDS("Source_Classification_Code.rds")
+#5
+#How have emissions from motor vehicle sources 
+#changed from 1999-2008 in Baltimore City?
+scc3=scc[grep('Motor',as.character(scc$Short.Name), fixed=TRUE),1]
+nei4=subset(nei,SCC %in% scc3)
+year4=list(factor(nei4$year))
+emis5=aggregate(x=nei4$Emissions,by=year4,FUN=sum)
+colnames(emis5)=c('year','emission')
+png('plot5.png')
+barplot(emis5$emission,names.arg=emis5$year,
+        main='Emission Summary Motor Vehicle')
+dev.off()
+Print('Increasing')

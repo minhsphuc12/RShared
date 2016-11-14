@@ -1,0 +1,23 @@
+OBJECTIVE
+
+the objective is to provide the recommendation of movie items to various users based on various criteria.
+
+METHOD 
+1. Descriptive Analysis
+First all data will be described by some features: mean, median, mode, range, ANOVA. 
+There will be graphical plot for notable variables, using ggplot2 package.
+(suggestions............)
+
+2. Exploratory 
+Each variable pair,triple,... in original data, user, item will be cross-analyzed to see any patterns and correlation possible.
+(suggestions............)
+
+2. Predictive Analysis
+Several method will be implemented, analyzed and benchmarked
+a.Collaborative Filtering (user-based): based on similarity of ratings, user information. 
+
+b.Content Filtering (item-based): based on item information (basically genre).
+One suggestion is use clustering, k-nearest neighbor and other classification algorithms (random forest, trees)
+(suggestions............)
+
+Final recommendation will be picked or composed based on the performace analysis

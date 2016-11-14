@@ -1,0 +1,22 @@
+library(ggplot2)
+library(lattice)
+
+#read data
+nei <- readRDS("summarySCC_PM25.rds")
+scc <- readRDS("Source_Classification_Code.rds")
+
+#4
+#Across the United States, how have emissions 
+#from coal combustion-related sources changed from 1999-2008?
+scc2=scc[grep('Coal',as.character(scc$Short.Name), fixed=TRUE),1]
+nei3=subset(nei,SCC %in% scc2)
+year3=list(factor(nei3$year))
+emis4=aggregate(x=nei3$Emissions,by=year3,FUN=sum)
+colnames(emis4)=c('year','emission')
+#constructing plot and save to png
+png('plot4.png')
+barplot(emis4$emission,names.arg=emis4$year,
+        main='Emission Summary Coal Combustion')
+dev.off()
+#answer
+Print('Decreasing')
